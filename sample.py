@@ -27,7 +27,7 @@ with open(SAMPLE_FILE, 'wb') as output:
 
     # Write every 10th top level element
     for i, element in enumerate(get_element(OSM_FILE)):
-        if i % 20 == 0:
+        if i % 10 == 0:
             output.write(ET.tostring(element, encoding='utf-8'))
 
     output.write('</osm>')

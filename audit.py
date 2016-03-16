@@ -14,7 +14,7 @@ from collections import defaultdict
 import re
 import pprint
 
-OSMFILE = "san-francisco_california.osm"
+OSMFILE = "sample-san-francisco_california.osm"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 
@@ -25,6 +25,7 @@ expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square"
 mapping = { "St": "Street",
             "St.": "Street",
             "Ave": "Avenue",
+            "Ave.": "Avenue",
             "Rd": "Road",
             "Rd.": "Road",
             "St.": "Street"
