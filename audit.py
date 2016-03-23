@@ -19,7 +19,10 @@ street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 
 expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
-            "Trail", "Parkway", "Commons"]
+            "Trail", "Parkway", "Commons", "West", "Mason", "Way", "Circle", "Alameda", "Highway",
+             "Center", "Real", "Columbus", "East", "Embarcadero","A","Airport","Alley","Broadway",
+             "Cumbre","D","3","A","Gardens","I-580","Las","Ic","Loop","Marina","Market/Noe","Ora",
+             "Path","Plaza","Southgate","Steps","Terrace","Vallejo","Walk","I-580)"]
 
 # UPDATE THIS VARIABLE
 mapping = { "St": "Street",
@@ -28,7 +31,11 @@ mapping = { "St": "Street",
             "Ave.": "Avenue",
             "Rd": "Road",
             "Rd.": "Road",
-            "St.": "Street"
+            "St.": "Street",
+            "st": "Street",
+            "avenue": "Avenue",
+            "Plz": "Plaza",
+            "Blvd": "Boulevard"
             }
 
 
@@ -66,18 +73,12 @@ def update_name(name, mapping):
 
 def test():
     st_types = audit(OSMFILE)
-    # assert len(st_types) == 3
     pprint.pprint(dict(st_types))
 
     for st_type, ways in st_types.iteritems():
         for name in ways:
             better_name = update_name(name, mapping)
             print name, "=>", better_name
-    #         if name == "West Lexington St.":
-    #             assert better_name == "West Lexington Street"
-    #         if name == "Baldwin Rd.":
-    #             assert better_name == "Baldwin Road"
-
 
 if __name__ == '__main__':
     test()
