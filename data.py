@@ -173,28 +173,15 @@ def test():
     # call the process_map procedure with pretty=False. The pretty=True option adds 
     # additional spaces to the output, making it significantly larger.
     data = process_map('sample-san-francisco_california.osm', False)
-    pprint.pprint(data)
+    from pymongo import MongoClient
+    client = MongoClient("mongodb://localhost:27017")
+    db = client.sfosm
+
+    db.sfosm.insert(data)
+    print db.sfosm.find_one()
     
-    # correct_first_elem = {
-    #     "id": "261114295", 
-    #     "visible": "true", 
-    #     "type": "node", 
-    #     "pos": [41.9730791, -87.6866303], 
-    #     "created": {
-    #         "changeset": "11129782", 
-    #         "user": "bbmiller", 
-    #         "version": "7", 
-    #         "uid": "451048", 
-    #         "timestamp": "2012-03-28T18:31:23Z"
-    #     }
-    # }
-    # assert data[0] == correct_first_elem
-    # assert data[-1]["address"] == {
-    #                                 "street": "West Lexington St.", 
-    #                                 "housenumber": "1412"
-    #                                   }
-    # assert data[-1]["node_refs"] == [ "2199822281", "2199822390",  "2199822392", "2199822369", 
-    #                                 "2199822370", "2199822284", "2199822281"]
+    #pprint.pprint(data)
+
 
 if __name__ == "__main__":
     test()
