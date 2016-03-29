@@ -20,8 +20,17 @@ if __name__ == "__main__":
     # top one contributing user
     # results = db.sfosm.aggregate([{"$group":{"_id":"$created.user", "count":{"$sum":1}}},{"$sort":{"count":1}},{"$limit":1}])
 
-    results = db.sfosm.aggregate([{"$group":{"_id":"$created.user", "count":{"$sum":1}}}, {"$group":{"_id":"$count", "num_users":{"$sum":1}}}, {"$sort":{"_id":1}}, {"$limit":1}])
+    # users appearing the fewest amount of times
+    # results = db.sfosm.aggregate([{"$group":{"_id":"$created.user", "count":{"$sum":1}}}, {"$group":{"_id":"$count", "num_users":{"$sum":1}}}, {"$sort":{"_id":1}}, {"$limit":1}])
 
+    # top ammenities
+    # results = db.sfosm.aggregate([{"$match":{"amenity":{"$exists":1}}}, {"$group":{"_id":"$amenity", "count":{"$sum":1}}}, {"$sort":{"count":-1}},{"$limit":10}])
+
+    # top religion  
+    #results = db.sfosm.aggregate([{"$match":{"amenity":{"$exists":1},"amenity":"place_of_worship"}},{"$group":{"_id":"$religion", "count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":1}])
+
+    # most popular cuisine
+    results = db.sfosm.aggregate([{"$match":{"amenity":{"$exists":1},"amenity":"restaurant"}},{"$group":{"_id":"$cuisine","count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":2}])
     # print db.sfosm.find_one()
     
     import pprint
