@@ -5,7 +5,7 @@ import pprint
 import re
 import codecs
 import json
-from audit import update_name
+from audit import update_name,mapping,expected
 """
 Your task is to wrangle the data and transform the shape of the data
 into the model we mentioned earlier. The output should be a list of dictionaries
@@ -129,6 +129,9 @@ def shape_element(element):
                     pass
                 elif re.search(r'\w+:\w+:\w+', subtag.get('k')):
                     pass
+                elif subtag.get('k').startswith('addr:') and subtag.get('k')[5:] == "street":   # clean street name
+                    address[subtag.get('k')[5:]] = update_name(subtag.get('v'),mapping)
+                    node['address'] = address
                 elif subtag.get('k').startswith('addr:'):
                     address[subtag.get('k')[5:]] = subtag.get('v')
                     node['address'] = address

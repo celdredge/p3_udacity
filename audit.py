@@ -68,7 +68,7 @@ def update_name(name, mapping):
         m = street_type_re.search(name)
         if m not in expected:
             name = re.sub(m.group(), mapping[m.group()], name)
-        return name 
+        return name
 
 
 def test():
