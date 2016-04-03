@@ -1,0 +1,5 @@
+Map Area: San Francisco, CA, United States
+https://www.openstreetmap.org/relation/111968
+https://mapzen.com/data/metro-extracts/#san-francisco-california
+
+I chose the San Francisco Bay Area because this is where I spent most of my childhood and currently live.

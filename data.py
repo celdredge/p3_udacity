@@ -132,6 +132,9 @@ def shape_element(element):
                 elif subtag.get('k').startswith('addr:') and subtag.get('k')[5:] == "street":   # clean street name
                     address[subtag.get('k')[5:]] = update_name(subtag.get('v'),mapping)
                     node['address'] = address
+                elif subtag.get('k').startswith('addr:') and subtag.get('k')[5:] == "postcode" and len(subtag.get('v')) < 5: # skip invalid postcodes 
+                    print 'skipping ', subtag.get('v')
+                    pass
                 elif subtag.get('k').startswith('addr:'):
                     address[subtag.get('k')[5:]] = subtag.get('v')
                     node['address'] = address
@@ -180,7 +183,6 @@ def test():
     db = client.sfosm
 
     db.sfosm.insert(data)
-#    print db.sfosm.find_one()
 
 if __name__ == "__main__":
     test()
