@@ -5,7 +5,7 @@ import pprint
 import re
 import codecs
 import json
-from audit import update_name,mapping,expected
+from audit import update_name, mapping, expected
 """
 Your task is to wrangle the data and transform the shape of the data
 into the model we mentioned earlier. The output should be a list of dictionaries
@@ -149,9 +149,7 @@ def shape_element(element):
         
         if node_refs:
             node['node_refs'] = node_refs
-            
-
-        
+                    
         return node
     else:
         return None
@@ -182,10 +180,7 @@ def test():
     db = client.sfosm
 
     db.sfosm.insert(data)
-    print db.sfosm.find_one()
-    
-    #pprint.pprint(data)
-
+#    print db.sfosm.find_one()
 
 if __name__ == "__main__":
     test()
